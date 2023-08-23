@@ -2,6 +2,7 @@ package com.gusgluna.springbootmongodb.controller;
 
 import com.gusgluna.springbootmongodb.collection.Person;
 import com.gusgluna.springbootmongodb.service.PersonService;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,4 +49,9 @@ public class PersonController {
         Pageable pageable = PageRequest.of(page, size);
         return  personService.search(name, minAge, maxAge, city, pageable);
     };
+
+    @GetMapping("/oldestPerson")
+    public List<Document> getOldest(){
+        return personService.getOldestPersonByCity();
+    }
 }
